@@ -13,9 +13,19 @@
                      title:'ระบบฐานข้อมูลแจ้งเกิดเด็กปากแหว่งเพดานโหว่',
                      iconCls:'icon-man',
                      url:'<?=base_url()?>index.php/welcome/json_main1',
+                     rownumbers:true,
+                     singleSelect:true,
                      columns:[[
-                         { field:'name', title:'ชื่อ' ,align:'left' }
-                     ]]
+                         { field:'name', title:'ชื่อผู้ป่วย' ,align:'left' , editor:'text' ,  },
+                         { field:'lastname',title:'นามสกุลผู้ป่วย',align:'left' },
+ 
+                     ]],
+                         
+                       
+                         
+                         toolbar:[
+                     {  text:'Reload',iconCls:'icon-reload' , handler:function(){  $('#dg_main1').datagrid('reload'); } }
+                         ]
                  });
                
            });
