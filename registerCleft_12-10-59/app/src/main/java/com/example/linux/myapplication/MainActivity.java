@@ -52,7 +52,7 @@ public class MainActivity  extends  TabActivity {
 
    // public static String ip="http://10.87.196.113/";
    // http://kkucleft.kku.ac.th/json2/selProvince.php
-   public static String ip="http://kkucleft.kku.ac.th";
+   public static String ip="http://kkucleft.kku.ac.th/";
 
 
     private DatePicker datePicker;
