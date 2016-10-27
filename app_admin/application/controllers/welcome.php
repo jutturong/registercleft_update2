@@ -48,10 +48,19 @@ class Welcome extends CI_Controller {
              $this->load->view('mainpage',$data);
         }
         //http://127.0.0.1/app_admin/index.php/welcome/json_main1
+        //http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_main1
         public function json_main1()
         {
              //FROM `tb_patientcleft` 
+            //SELECT * FROM `province` 
+             //PROVINCE_CODE
+            
              $tb="tb_patientcleft";
+             $tb1="province";
+             
+             $this->db->join($tb1, $tb1.".PROVINCE_CODE=".$tb.".province_id" ,"left");
+             
+             
              $q=$this->db->get($tb);
              foreach($q->result() as $row )
              {
@@ -60,6 +69,18 @@ class Welcome extends CI_Controller {
              echo json_encode($rows);
              
             
+        }
+        //http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_province
+        public function json_province()
+        {
+             $tb="province";
+             $q=$this->db->get($tb);
+             foreach($q->result() as $row)
+             {
+                 $rows[]=$row;
+                 
+             }
+             echo json_encode($rows);
         }
         
 
