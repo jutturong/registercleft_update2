@@ -16,8 +16,8 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://127.0.0.1/app_admin/';
-
+//$config['base_url'] = 'http://127.0.0.1/app_admin/';
+$config['base_url'] = 'http://kkucleft.kku.ac.th/app_admin/';
 
 /*
 |--------------------------------------------------------------------------

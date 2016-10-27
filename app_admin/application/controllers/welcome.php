@@ -82,6 +82,73 @@ class Welcome extends CI_Controller {
              }
              echo json_encode($rows);
         }
+        //http://kkucleft.kku.ac.th/app_admin/index.php/welcome/update_patient
+        function   update_patient()
+        {
+              //echo "T";
+              echo $id_patient=trim($this->input->get_post("txt_id_patient"));
+              echo "<br>";
+              echo $name=trim($this->input->get_post("txt_name"));
+              echo "<br>";
+              //  $('#txt_lastname').textbox('setValue',row.lastname); 
+              echo  $lastname=trim($this->input->get_post("txt_lastname"));
+              echo "<br>";
+              //txt_id_card
+              echo  $id_card=trim($this->input->get_post("txt_id_card"));
+              echo "<br>";
+              //txt_telephone
+              echo  $telephone=trim($this->input->get_post("txt_telephone"));
+              echo "<br>";
+              //r_id_sex
+               echo  $r_id_sex=trim($this->input->get_post("r_id_sex"));
+              echo "<br>";
+              //txt_birthdate
+              echo  $birthdate=trim($this->input->get_post("txt_birthdate"));
+             
+              if(   !empty($birthdate)    )
+              {
+                   $ex=explode("/" , $birthdate );
+                   echo    $conv_birthdate =  $ex[2]."-".$ex[0]."-".$ex[1]; 
+                   echo "<br>";
+              }
+              //txt_address
+              echo  $address=trim($this->input->get_post("txt_address"));
+              echo "<br>";
+              //cmb_province_id
+               echo  $province_id=trim($this->input->get_post("cmb_province_id"));
+              echo "<br>";
+              //txt_diagnosis
+              echo  $diagnosis=trim($this->input->get_post("txt_diagnosis"));
+              echo "<br>";
+              //txt_detail_diagnosis
+              echo  $detail_diagnosis=trim($this->input->get_post("txt_detail_diagnosis"));
+              echo "<br>";
+              //txt_informative_name
+               echo  $informative_name=trim($this->input->get_post("txt_informative_name"));
+               echo "<br>";
+              //txt_informative_lastname
+               echo  $informative_lastname=trim($this->input->get_post("txt_informative_lastname"));
+               echo "<br>";
+               //name="txt_informative_tel" 
+                echo  $informative_tel=trim($this->input->get_post("txt_informative_tel"));
+                 echo "<br>";
+               
+               
+                $tb="tb_patientcleft";
+                $data=array(
+                     "name" => $name,
+                );
+                $this->db->where("id_patient",$id_patient);
+                $ck=$this->db->update($tb,$data);
+                if( $ck )
+                {
+                    echo 1;
+                }else
+                {
+                    echo 0;
+                }
+              
+        }
         
 
 }

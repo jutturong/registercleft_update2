@@ -48,14 +48,17 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-
+/*
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '1234';
 $db['default']['database'] = 'cleft2';
+*/
 
-
-
+$db['default']['hostname'] = '202.12.97.33';
+$db['default']['username'] = 'cleft';
+$db['default']['password'] = 'cleftkku';
+$db['default']['database'] = 'cleft2';
 
 
 $db['default']['dbdriver'] = 'mysql';

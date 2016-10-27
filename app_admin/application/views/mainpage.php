@@ -65,7 +65,9 @@
                          var  row=$('#dg_main1').datagrid('getSelected');
                              if ( row )
                              {
-                                    //alert('t');
+                                    //  txt_id_patient
+                                    $('#txt_id_patient').textbox('setValue',row.id_patient);
+                                     //alert('t');
                                     $('#txt_name').textbox('setValue',row.name);
                                     $('#txt_lastname').textbox('setValue',row.lastname); 
                                     $('#txt_id_card').textbox('setValue',row.id_card); 
@@ -122,9 +124,11 @@
                 </span>             
                   
                 
-                 <form id="fr_adduser"   method="post"  enctype="multipart/form-data"  novalidate="novalidate" >
+                 <form id="fr_main1"   method="post"  enctype="multipart/form-data"  novalidate="novalidate" >
                              
-                
+                     <div style="padding:3px;"  >  
+                        <input class="easyui-textbox"  name="txt_id_patient"  id="txt_id_patient"   readonly="true"   style="   width :50px;height:30px;" />
+                     </div>
                      
                 <div style="padding:3px;"  >         
                 <span>  ชื่อผู้ป่วย - นามสกุลผู้ป่วย :</span> 
@@ -216,12 +220,20 @@
                      
                 <div style="padding:3px;"  >   
                     
-                    <!--
+                    
                     <a  class="easyui-linkbutton"    href="javascript:void(0)"  onclick=" 
+                            $('#fr_main1').form('submit',{
+                                  url: '<?=base_url()?>index.php/welcome/update_patient',
+                                  success:function(data)
+                                   {
+                                        alert(data);
+                                        $('#dg_main1').datagrid('reload'); 
+                                   }
+                                
+                            });
                         
+                        "  iconCls="icon-edit"  style="width:100px;height:40px;"  >Update</a>
                         
-                        "  iconCls="icon-save"  style="width:100px;height:30px;"  >Update</a>
-                        -->
                         
                     <a  class="easyui-linkbutton"    href="javascript:void(0)"  onclick=" 
                         
@@ -248,7 +260,7 @@
                                       $('#txt_informative_lastname').textbox('setValue', '' );      
                                       $('#txt_informative_tel').textbox('setValue','' );
                                       
-                        "  iconCls="icon-remove"  style="width:100px;height:30px;"  >Clear</a> 
+                        "  iconCls="icon-remove"  style="width:100px;height:40px;"  >Clear</a> 
                 </div>   
                      
                  </form>
