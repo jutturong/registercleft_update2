@@ -27,10 +27,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         
                               <?php  echo form_open('welcome/checklogin');  ?>
 				<!--<form>-->
-						<input type="text" class="text" value="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" >
-						<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                                <input type="text"  id="us"  name="us"  value=""   class="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+                                <input type="password"  id="ps" name="ps"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<div class="submit">
-							<input type="submit" onclick="myFunction()" value="LOGIN" >
+							<input type="submit"  value="LOGIN" >
 					</div>	
 					<p><a href="#">Forgot Password ?</a></p>
 				<!--</form>-->

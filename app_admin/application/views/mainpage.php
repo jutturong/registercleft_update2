@@ -9,9 +9,52 @@
         
         <script type="text/javascript">
            $(function(){
+               //----------- progressbar-------------
+               var win=$.messager.progress({
+                     title:'Progress Loading',
+                     msg:'Loading',
+                   
+               });
+               setTimeout(function(){
+                    $.messager.progress('close');
+               },3000);
+               //----------- progressbar-------------
+               
+                //  txt_id_patient
+                                   $('#txt_id_patient').textbox('setValue','');
+                                   $('#txt_name').textbox('setValue','');
+                                    $('#txt_lastname').textbox('setValue',''); 
+                                    $('#txt_id_card').textbox('setValue',''); 
+                                    $('#txt_telephone').textbox('setValue','');
+                                    //txt_id_sex
+                                    $('#txt_id_sex').textbox('setValue','');
+                                   
+                                    $('#id_sex_m').attr('checked',false);
+                                    $('#id_sex_w').attr('checked',false);
+                                   
+                                      $('#txt_birthdate').textbox('setValue', '' );
+                                     $('#txt_address').textbox('setValue', '' );
+                                     
+                                    // $('#txt_province_id').textbox('setValue', '' );
+                                     //cmb_province_id
+                                     $('#cmb_province_id').textbox('setValue', '' );
+                                     
+                                     
+                                      $('#txt_diagnosis').textbox('setValue', '' );
+                                      $('#txt_detail_diagnosis').textbox('setValue', '' );
+                                       $('#txt_informative_name').textbox('setValue', '' );
+                                      $('#txt_informative_lastname').textbox('setValue', '' );      
+                                      $('#txt_informative_tel').textbox('setValue','' );
+                                      
+                                      $('#dg_main1').datagrid('reload'); 
+           });
+        </script>
+        
+        <script type="text/javascript">
+           $(function(){
                  $('#dg_main1').datagrid({
                      title:'ระบบฐานข้อมูลแจ้งเกิดเด็กปากแหว่งเพดานโหว่',
-                     iconCls:'icon-man',
+                     iconCls:'icon-large-picture',
                      url:'<?=base_url()?>index.php/welcome/json_main1',
                      rownumbers:true,
                      singleSelect:true,
@@ -57,8 +100,9 @@
             
             <div  id="tb" style="padding: 3px;">
                 <span>
+                 <a href="<?=base_url()?>index.php/welcome"  class="easyui-linkbutton"  iconCls="icon-man"  style="width:100px;height: 40px;"  >Logout</a>   
                  <a   href="#"   onclick=" $('#dg_main1').datagrid('reload');  "  style=" width:100px;height:40px; "  class="easyui-linkbutton"  iconCls="icon-reload" > Reload  </a> 
-                <a   href="#"   onclick="
+                 <a   href="#"   onclick="
                     
                     $(function(){
                         
@@ -73,21 +117,22 @@
                                     $('#txt_id_card').textbox('setValue',row.id_card); 
                                     $('#txt_telephone').textbox('setValue',row.telephone);
                                     
-                                    
+                                    //txt_id_sex
+                                    //   $('#txt_id_sex').textbox('setValue','');
                                     $('#txt_id_sex').textbox('setValue',row.id_sex);
                                   /*
                                       $('#r_id_sex_m').attr('checked',false);
                                     $('#r_id_sex_w').attr('checked',false);
                                    */
-                                    
-                                     if( row.id_sex == '1' )
+                                    //alert(row.id_sex);
+                                     if( row.id_sex == 1 )
                                      {
-                                          $('#id_sex_m').attr('checked', true );
+                                          $('#id_sex_m').attr('checked', 'checked' );
                                          // alert(row.id_sex);
                                      }
-                                     else if( row.id_sex == '2' )
+                                     else if( row.id_sex == 2 )
                                      {
-                                          $('#id_sex_w').attr('checked', true );
+                                          $('#id_sex_w').attr('checked', 'checked' );
                                          // alert(row.id_sex);
                                           //r_id_sex_m
                                      }
@@ -117,8 +162,47 @@
                              "  class="easyui-linkbutton"  style=" width:100px;height:40px; "   iconCls="icon-man" > View  </a> 
                              
                   <a   href="#"   onclick="
-                             
-                             
+                              var  row=$('#dg_main1').datagrid('getSelected');
+                              if(row)
+                              {
+                                     $.messager.prompt('ระบุรหัสผ่าน','กรุณาระบุรหัสผ่าน',function(r){
+                                                 var   sess_us='<?=$this->session->userdata("sess_ps")?>';
+                                                  if(r    ==  sess_us    )
+                                                    {
+                                                          // alert(sess_us);    
+                                                          var  id=row.id_patient;
+                                                          //alert(id);
+                                                          //http://kkucleft.kku.ac.th/app_admin/index.php/welcome/del_main1
+                                                          var  url ='<?=base_url()?>index.php/welcome/del_main1';
+                                                          $.post(url,{ id:id },function(data){
+                                                                 // alert(data);
+                                                                  if( data == 1)
+                                                                        {
+                                                                             //----------- progressbar-------------
+                                                                                var win=$.messager.progress({
+                                                                                      title:'สถานะการลบข้อมูล',
+                                                                                      msg:'ลบข้อมูลสำเร็จ',
+
+                                                                                });
+                                                                                setTimeout(function(){
+                                                                                     $.messager.progress('close');
+                                                                                },3000);
+                                                                              //----------- progressbar-------------
+                                                                             $('#dg_main1').datagrid('reload'); 
+                                                                        }
+                                                                        else{
+                                                                            $.messager.alert('สถานะการลบข้อมูล','ลบข้อมูลล้มเหลว');
+                                                                             $('#dg_main1').datagrid('reload'); 
+                                                                        }
+                                                                
+                                                          },'json');
+                                                          
+                                                    }
+                                                   else{
+                                                      $.messager.alert('รหัสผ่านไม่ถูกต้อง','กรุณาระบุรหัสผ่านใหม่');
+                                                   }
+                                     });
+                              }
                              "  class="easyui-linkbutton"  style=" width:100px;height:40px; "   iconCls="icon-cancel" > Delete  </a>            
                              
                 </span>             
@@ -127,6 +211,7 @@
                  <form id="fr_main1"   method="post"  enctype="multipart/form-data"  novalidate="novalidate" >
                              
                      <div style="padding:3px;"  >  
+                         <span>ID :</span>
                         <input class="easyui-textbox"  name="txt_id_patient"  id="txt_id_patient"   readonly="true"   style="   width :50px;height:30px;" />
                      </div>
                      
@@ -141,16 +226,17 @@
                 <span>  เลขบัตรประชาชน :</span> 
                 <input class="easyui-textbox"  name="txt_id_card"  id="txt_id_card"  style=" width :100px;height:30px;" />
                  <span>  เบอร์โทรศัพท์ :</span> 
-                <input class="easyui-textbox"  name="txt_telephone"  id="txt_telephone"  style=" width :100px;height:30px;" />
+                 
+                <input class="easyui-textbox"  name="txt_telephone"  id="txt_telephone"  style=" width :150px;height:30px;" />
                  <span>  เพศ :</span> 
                  
                  
                 <input class="easyui-textbox"  name="txt_id_sex"  id="txt_id_sex"  style=" width :30px;  height:30px; " /> 
                 
                 
-                <input type="radio"  name="r_id_sex"    id="id_sex_m"  value="1"  /> ชาย
+                <input  type="radio"    name="r_id_sex"    id="id_sex_m"  value="1"  /> ชาย
                 
-                 <input type="radio"  name="r_id_sex"    id="id_sex_w"  value="2"  /> หญิง
+                 <input  type="radio"    name="r_id_sex"    id="id_sex_w"  value="2"  /> หญิง
                 
                 
                 </div>
@@ -222,26 +308,67 @@
                     
                     
                     <a  class="easyui-linkbutton"    href="javascript:void(0)"  onclick=" 
+                        
+                        $.messager.prompt('ระบุรหัสผ่าน','กรุณาระบุรหัสผ่าน',function(r){
+                            
+                              var   sess_us='<?=$this->session->userdata("sess_ps")?>';
+                                  //alert(sess_us);         
+                                       if(r ==  sess_us    )
+                                           {
+                                               
                             $('#fr_main1').form('submit',{
                                   url: '<?=base_url()?>index.php/welcome/update_patient',
                                   success:function(data)
                                    {
-                                        alert(data);
-                                        $('#dg_main1').datagrid('reload'); 
+                                        if( data == 1)
+                                        {
+                                             //----------- progressbar-------------
+                                                var win=$.messager.progress({
+                                                      title:'สถานะการปรับปรุงข้อมูล',
+                                                      msg:'ปรับปรุงข้อมูลสำเร็จ',
+
+                                                });
+                                                setTimeout(function(){
+                                                     $.messager.progress('close');
+                                                },3000);
+                                              //----------- progressbar-------------
+                                             $('#dg_main1').datagrid('reload'); 
+                                        }
+                                        else{
+                                            $.messager.alert('สถานะการปรับปรุงข้อมูล','ปรับปรุงข้อมูลล้มเหลว');
+                                             $('#dg_main1').datagrid('reload'); 
+                                        }
+                                       
                                    }
                                 
                             });
+                            
+
+                                            }
+                                             else{
+                                                      $.messager.alert('รหัสผ่านไม่ถูกต้อง','กรุณาระบุรหัสผ่านใหม่');
+                                                   }
+
+                        });
+                        
+                        
+                       
+                               
+                            
                         
                         "  iconCls="icon-edit"  style="width:100px;height:40px;"  >Update</a>
                         
                         
                     <a  class="easyui-linkbutton"    href="javascript:void(0)"  onclick=" 
                         
-                                    $('#txt_name').textbox('setValue','');
+                                   //  txt_id_patient
+                                   $('#txt_id_patient').textbox('setValue','');
+                                   $('#txt_name').textbox('setValue','');
                                     $('#txt_lastname').textbox('setValue',''); 
                                     $('#txt_id_card').textbox('setValue',''); 
                                     $('#txt_telephone').textbox('setValue','');
-                                   //  $('#txt_id_sex').textbox('setValue','');
+                                    //txt_id_sex
+                                    $('#txt_id_sex').textbox('setValue','');
                                    
                                     $('#id_sex_m').attr('checked',false);
                                     $('#id_sex_w').attr('checked',false);
