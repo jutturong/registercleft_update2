@@ -233,27 +233,27 @@ public class MainActivity  extends  TabActivity {
 
         //ชื่อผู้ให้ ข้อมูล
         informative_name=(EditText)findViewById(R.id.informative_name);
-        informative_name.setText("วิชิต");
+      //  informative_name.setText("วิชิต");
         strinformative_name=informative_name.getText().toString();
 
         ////นามสกุลผู้ให้ข้อมูล
         informative_lastname=(EditText)findViewById(R.id.informative_lastname);
-        informative_lastname.setText("ศรีเชียง");
+      //  informative_lastname.setText("ศรีเชียง");
         strinformative_lastname=informative_lastname.getText().toString();
 
 
         //เบอร์โทรศัพท์ผู้ให้ข้อมูล
         informative_tel=(EditText)findViewById(R.id.informative_tel);
-        informative_tel.setText("0858539042");
+       // informative_tel.setText("0858539042");
         strinformative_tel=informative_tel.getText().toString();
 
 
         //testing insert field
-        name.setText("กานดา");
-        lastname.setText("บุญประครอง");
-        id_card.setText("362510478524");
-        telephone.setText("0855241258");
-        address.setText("857/74 ถ.ชาตุผดุง ต.ในเมือง อ.เมือง");
+       // name.setText("กานดา");
+       // lastname.setText("บุญประครอง");
+       // id_card.setText("362510478524");
+      //  telephone.setText("0855241258");
+      //  address.setText("857/74 ถ.ชาตุผดุง ต.ในเมือง อ.เมือง");
      //   diagnosis.setText("เพดานโหว่");
       //insert  to table
 
