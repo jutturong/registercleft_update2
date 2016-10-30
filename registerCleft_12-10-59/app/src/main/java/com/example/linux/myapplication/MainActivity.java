@@ -52,7 +52,7 @@ public class MainActivity  extends  TabActivity {
 
    // public static String ip="http://10.87.196.113/";
    // http://kkucleft.kku.ac.th/json2/selProvince.php
-   public static String ip="http://kkucleft.kku.ac.th/";
+    public static String ip="http://kkucleft.kku.ac.th/";
 
 
     private DatePicker datePicker;
@@ -234,18 +234,18 @@ public class MainActivity  extends  TabActivity {
         //ชื่อผู้ให้ ข้อมูล
         informative_name=(EditText)findViewById(R.id.informative_name);
       //  informative_name.setText("วิชิต");
-        strinformative_name=informative_name.getText().toString();
+       // strinformative_name=informative_name.getText().toString();
 
         ////นามสกุลผู้ให้ข้อมูล
         informative_lastname=(EditText)findViewById(R.id.informative_lastname);
       //  informative_lastname.setText("ศรีเชียง");
-        strinformative_lastname=informative_lastname.getText().toString();
+       // strinformative_lastname=informative_lastname.getText().toString();
 
 
         //เบอร์โทรศัพท์ผู้ให้ข้อมูล
         informative_tel=(EditText)findViewById(R.id.informative_tel);
        // informative_tel.setText("0858539042");
-        strinformative_tel=informative_tel.getText().toString();
+       // strinformative_tel=informative_tel.getText().toString();
 
 
         //testing insert field
@@ -295,8 +295,13 @@ public class MainActivity  extends  TabActivity {
                 strdiagnosis = spinner1.getSelectedItem().toString();
                 // testalert("testing to click!!");
 
-                 strdetail_diagnosis=detail_diagnosis.getText().toString();
+                strdetail_diagnosis=detail_diagnosis.getText().toString();
 
+                strinformative_name=informative_name.getText().toString();
+
+                strinformative_lastname=informative_lastname.getText().toString();
+
+                strinformative_tel=informative_tel.getText().toString();
 
                 insertPatient();
                 // insertPatient2();
@@ -329,9 +334,9 @@ public class MainActivity  extends  TabActivity {
 
 
         params.add(new BasicNameValuePair("detail_diagnosis", strdetail_diagnosis )); //ระบุการวินิจฉัยโรค อื่นๆ
-        params.add(new BasicNameValuePair("informative_name", strinformative_name )); //ชื่อผู้ให้ ข้อมูล
-        params.add(new BasicNameValuePair("informative_lastname", strinformative_lastname )); //นามสกุลผู้ให้ข้อมูล
-        params.add(new BasicNameValuePair("informative_tel", strinformative_tel )); //เบอร์โทรศัพท์ผู้ให้ข้อมูล
+        params.add(new BasicNameValuePair("informative_name", informative_name.getText().toString() )); //ชื่อผู้ให้ ข้อมูล
+        params.add(new BasicNameValuePair("informative_lastname", informative_lastname.getText().toString() )); //นามสกุลผู้ให้ข้อมูล
+        params.add(new BasicNameValuePair("informative_tel", informative_tel.getText().toString() )); //เบอร์โทรศัพท์ผู้ให้ข้อมูล
 
 
         try{
