@@ -360,9 +360,9 @@ class Welcome extends CI_Controller {
                "province_id"=>$id_prov,
                "diagnosis"=>$diagnosis,
                "detail_diagnosis"=>$detail_diagnosis,
-            //  "informative_name"=>$informative_name,
-            //  "informative_lastname"=>$informative_lastname,
-             // "informative_tel"=>$informative_tel,
+                "info_name"=>$informative_name,
+               "informative_lastname"=>$informative_lastname,
+                "informative_tel"=>$informative_tel,
           );
            
            
