@@ -126,13 +126,13 @@ public class MainActivity  extends  TabActivity {
 
 
     //public  String urlinsert="http://10.87.196.113/json2/insertPatient.php";
-     public  String urlinsert=  ip +  "json2/insertPatient.php";
+   //  public  String urlinsert=  ip +  "json2/insertPatient.php";
+    public  String urlinsert="http://kkucleft.kku.ac.th/app_admin/index.php/welcome/insertPatient";
 
     //---- Autocomplete  PROVINCE จัวงหว
     private AutoCompleteTextView autocomplete1;
     private  List<String> arrList = new ArrayList<String>();
     private  ArrayAdapter<String> adapter;
-
 
     //----- spinner  text ---
     String[] arr = { "---เลือก---","ปากแหว่ง", "เพดานโหว่", "ปากแหว่งและเพดานโหว่", "อื่นๆ" };
@@ -324,12 +324,12 @@ public class MainActivity  extends  TabActivity {
         params.add(new BasicNameValuePair("province_id", strprovince_id));
         params.add(new BasicNameValuePair("diagnosis", strdiagnosis));
 
-        /*
+
         params.add(new BasicNameValuePair("detail_diagnosis", strdetail_diagnosis )); //ระบุการวินิจฉัยโรค อื่นๆ
         params.add(new BasicNameValuePair("informative_name", strinformative_name )); //ชื่อผู้ให้ ข้อมูล
         params.add(new BasicNameValuePair("informative_lastname", strinformative_lastname )); //นามสกุลผู้ให้ข้อมูล
         params.add(new BasicNameValuePair("informative_tel", strinformative_tel )); //เบอร์โทรศัพท์ผู้ให้ข้อมูล
-        */
+
 
         try{
             JSONArray data = new  JSONArray(getHttpPost( urlinsert ,params ));  //post value in table
