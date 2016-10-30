@@ -295,6 +295,9 @@ public class MainActivity  extends  TabActivity {
                 strdiagnosis = spinner1.getSelectedItem().toString();
                 // testalert("testing to click!!");
 
+                 strdetail_diagnosis=detail_diagnosis.getText().toString();
+
+
                 insertPatient();
                 // insertPatient2();
             }
