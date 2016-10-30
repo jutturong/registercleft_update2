@@ -70,7 +70,7 @@
                          { field:'PROVINCE_NAME',title:'จังหวัดเกิด',align:'left' },
                          { field:'diagnosis',title:'ภาวะโลกร่วม',align:'left' },
                          { field:'detail_diagnosis',title:'ภาวะโลกร่วม อื่นๆ',align:'left' },
-                         { field:'informative_name',title:'ชื่อผู้ให้ข้อมูล',align:'left' },
+                         { field:'info_name',title:'ชื่อผู้ให้ข้อมูล',align:'left' },
                          { field:'informative_lastname',title:'นามสกุลผู้ให้ข้อมูล',align:'left' },
                          { field:'informative_tel',title:'เบอร์โทรศัพท์ผู้ให้ข้อมูล',align:'left' },
                           //
