@@ -151,7 +151,7 @@
                                     
                                     $('#txt_diagnosis').textbox('setValue',row.diagnosis);
                                     $('#txt_detail_diagnosis').textbox('setValue',row.detail_diagnosis );
-                                    $('#txt_informative_name').textbox('setValue',row.informative_name );
+                                    $('#txt_informative_name').textbox('setValue',row.info_name );
                                     $('#txt_informative_lastname').textbox('setValue',row.informative_lastname );
                                     $('#txt_informative_tel').textbox('setValue',row.informative_tel );
                                
