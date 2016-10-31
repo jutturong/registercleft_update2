@@ -27,8 +27,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         
                               <?php  echo form_open('welcome/checklogin');  ?>
 				<!--<form>-->
-                                <input type="text"  id="us"  name="us"  value=""   class="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
-                                <input type="password"  id="ps" name="ps"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                                <input type="text"  id="us"  name="us"     class="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+                                <input type="password"  id="ps" name="ps"   onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<div class="submit">
 							<input type="submit"  value="LOGIN" >
 					</div>	
