@@ -1,0 +1,302 @@
+http://www.thaicreate.com/mobile/android-json-from-url.html
+
+
+http://www.thaicreate.com/mobile/android-connect-web-server-php-mysql.html
+
+
+http://stackoverflow.com/questions/32153318/httpclient-wont-import-in-android-studio
+
+
+http://192.168.2.112/dental/index.php/welcome/json_tb1/
+
+
+
+ให้ไป synce ใน  build.gradle ซึ่งอยู่ในตำแหน่งของ app > src
+
+
+android {
+   compileSdkVersion 24
+   buildToolsVersion "24.0.2"
+   useLibrary 'org.apache.http.legacy'
+
+
+
+Toast.makeText(MyActivity.this,String.valueOf("Your Input : "+edt1.getText().toString()),Toast.LENGTH_SHORT).show();
+
+  Toast.makeText(MainActivity.this,String.valueOf(" testing alert "),Toast.LENGTH_SHORT).show();
+
+
+
+
+http://192.168.2.112/dental/index.php/json/json1
+
+
+final Button btn1=(Button) findViewById(R.id.btn1);
+        btn1.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
+
+
+http://www.thaicreate.com/mobile/android-json-from-url.html
+
+
+ให้เอาไว้ใต้  ใน file => AndroidMainfest.xml
+ </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+#------------ link ล่าสุด-  json php  android  image -------
+
+http://www.thaicreate.com/mobile/android-json-from-url.html
+
+SELECT *
+FROM `member`
+LIMIT 0 , 30
+
+
+
+     # http://localhost/dental/index.php/json/json2
+               public function json2()
+               {
+                   $tb="member";
+                   $q=$this->db->get($tb);
+                     foreach($q->result() as $row)
+                    {
+                        $rows[]=$row;
+                    }
+                    echo   json_encode($rows);
+               }
+
+##------------ เพิ่มเติม ------------------------
+http://www.thaicreate.com/mobile/android-json-from-url.html
+
+
+*AndroidManifest.xml
+ </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+*MainActivity.java
+
+
+   public  String  url="http://10.87.196.170/dental/index.php/json/json1";
+
+
+
+// Permission StrictMode
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+
+try {
+
+                    JSONArray data = new JSONArray(getJSONUrl(url));
+
+                    //  Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
+
+                    final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+                    HashMap<String, String> map;
+
+
+                    for(int i = 0; i < data.length(); i++){
+                        JSONObject c = data.getJSONObject(i);
+
+
+                        map = new HashMap<String, String>();
+                        map.put("ImageID", c.getString("ImageID"));
+                        map.put("ImageDesc", c.getString("ImageDesc"));
+                        map.put("ImagePath", c.getString("ImagePath"));
+                        MyArrList.add(map);
+
+
+
+                        Toast.makeText(MainActivity.this,String.valueOf(  c.getString("ImagePath") ),Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+
+
+
+
+
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+
+
+
+ public String getJSONUrl(String url) {
+        StringBuilder str = new StringBuilder();
+        HttpClient client = new DefaultHttpClient();
+        HttpGet httpGet = new HttpGet(url);
+        try {
+            HttpResponse response = client.execute(httpGet);
+            StatusLine statusLine = response.getStatusLine();
+            int statusCode = statusLine.getStatusCode();
+            if (statusCode == 200) { // Download OK
+                HttpEntity entity = response.getEntity();
+                InputStream content = entity.getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    str.append(line);
+                }
+            } else {
+                Log.e("Log", "Failed to download result..");
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str.toString();
+    }
+
+
+*build.gradle
+
+   useLibrary 'org.apache.http.legacy'
+
+เพิ่มเติม 
+  apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        applicationId "com.example.linux.myapplication"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar')
+}
+
+#--------------- โปรแกรมสมุนไพร
+http://www.thaicreate.com/mobile/android-json-from-url.html
+
+http://192.168.2.112/dental/index.php/json/tb_herb
+
+autocomplete  sqlite
+http://www.thaicreate.com/mobile/android-sqlite-autocompletetextview.html
+
+autocomplete html ให้ดูตัวอย่างที่ 2 ข้างล่างในเรื่อง autocomplete
+http://www.thaicreate.com/mobile/android-autocompletetextview.html
+
+
+#------------------ autocomplete  json code-------------------
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    useLibrary 'org.apache.http.legacy'
+
+
+  -xml file 
+<AutoCompleteTextView
+
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="3dp"
+        android:ems="10"
+        android:completionThreshold="1"
+        android:text="" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
+
+  -java file
+// Permission StrictMode
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+   final AutoCompleteTextView autocomplete1 = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
+        final  List<String> arrList = new ArrayList<String>();
+
+ try {
+
+  JSONArray data = new JSONArray(getJSONUrl(url));
+             for(int i = 0; i < data.length(); i++)
+                    {
+                       
+                       JSONObject c = data.getJSONObject(i);
+
+ arrList.add( c.getString("name") );
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,
+                                android.R.layout.simple_spinner_item,
+                                arrList);
+                        autocomplete1.setAdapter(adapter);
+
+
+
+                     }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+
+//------------- main xml ------------
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:id="@+id/btn1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="เริ่มต้น(Start)"
+        />
+
+    <ListView
+
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview1"
+        >
+
+    </ListView>
+
+
+สามารถโทรออกได้
+http://www.thaicreate.com/mobile/android-call-phone.html
+
+
+
+
