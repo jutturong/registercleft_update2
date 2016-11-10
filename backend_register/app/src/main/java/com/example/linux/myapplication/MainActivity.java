@@ -1,10 +1,13 @@
 package com.example.linux.myapplication;
 
+import android.content.DialogInterface;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -47,11 +50,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        final AutoCompleteTextView autocomplete1 = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
         final List<String> arrList = new ArrayList<String>();
+        final AutoCompleteTextView autocomplete1 = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
         autoname(arrList,autocomplete1);
 
         final ListView listview1= (ListView)   findViewById(R.id.listview1);
+
+        final AlertDialog.Builder viewDetail = new AlertDialog.Builder(this);
+
 
         final Button btn1=(Button) findViewById(R.id.btn1);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -93,12 +99,25 @@ public class MainActivity extends AppCompatActivity {
 
                     SimpleAdapter sAdap;
                     sAdap = new SimpleAdapter(MainActivity.this, MyArrList, R.layout.activity_column,
-                            new String[] {"name", "lastname" , "PROVINCE_NAME" }, new int[] {R.id.Col_name, R.id.Col_lastname ,R.id.Col_id_card });
+                            new String[] {"name", "lastname" , "PROVINCE_NAME" }, new int[] {R.id.Col_name, R.id.Col_lastname ,R.id.Col_PROVINCE_NAME });
 
                     listview1.setAdapter(sAdap);
 
 
-                }catch (JSONException e) {
+                    listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> myAdapter, View myView,
+                                                int position, long mylng) {
+                            Toast.makeText(MainActivity.this,String.valueOf(  "test" ),Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+
+
+
+
+                        }catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }

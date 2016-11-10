@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="290dp"
+        android:layout_marginLeft="300dp"
         android:ems="100"
         android:completionThreshold="1"
         android:text="" >
@@ -42,7 +42,7 @@
 
         <ListView
 
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="80dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/listview1"
