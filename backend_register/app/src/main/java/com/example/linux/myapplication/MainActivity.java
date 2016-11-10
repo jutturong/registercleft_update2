@@ -92,13 +92,24 @@ public class MainActivity extends AppCompatActivity {
                         map.put("name",c.getString("name"));
                         map.put("lastname",c.getString("lastname"));
                         map.put("id_card",c.getString("id_card"));
-
-
+                        map.put("id_sex",c.getString("id_sex"));
 
                         map.put("PROVINCE_NAME",c.getString("PROVINCE_NAME"));
 
                         map.put("telephone",c.getString("telephone"));
 
+
+
+
+                        map.put("birthdate",c.getString("birthdate"));
+
+
+                        map.put("address",c.getString("address"));
+
+
+
+
+                        map.put("diagnosis",c.getString("diagnosis"));
 
 
                         map.put("fullname",c.getString("name") +  "   "  + c.getString("lastname") );
@@ -127,11 +138,29 @@ public class MainActivity extends AppCompatActivity {
 
                             String sMemberID = MyArrList.get(position).get("id_card")
                                     .toString();
-
-
-
                             String stelephone = MyArrList.get(position).get("telephone")
                                     .toString();
+                            String id_sex = MyArrList.get(position).get("id_sex")
+                                    .toString();
+
+                            String birthdate = MyArrList.get(position).get("birthdate")
+                                    .toString();
+
+                            String address = MyArrList.get(position).get("address")
+                                    .toString();
+
+
+                            String PROVINCE_NAME = MyArrList.get(position).get("PROVINCE_NAME")
+                                    .toString();
+
+
+                            String diagnosis = MyArrList.get(position).get("diagnosis")
+                                    .toString();
+
+
+
+
+
 
                            // viewDetail.setIcon(android.R.drawable.btn_star_big_on);
                             viewDetail.setIcon(android.R.drawable.btn_plus);
@@ -140,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
                                     (
                                             "เลขบัตรประชาชน : " + sMemberID + "\n"
                                           +  "เบอร์โทรศัพท์ : " + stelephone + "\n"
+                                          +  "เพศ : " + id_sex + "\n"
+                                          +  "วัน-เดือน-ปี เกิด : " + birthdate + "\n"
+                                          +  "ที่อยู่ปัจจุบัน(ตามทะเบียนบ้าน) : " + address + "\n"
+                                          +  "จังหวัดเกิด : " + PROVINCE_NAME + "\n"
+                                           +  "ภาวะโลกร่วม : " + diagnosis + "\n"
 
                                     );
 

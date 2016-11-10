@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Back office cleft register</string>
 
+    <string name="app_name" translatable="false">แจ้งการลงทะเบียน</string>
 </resources>
