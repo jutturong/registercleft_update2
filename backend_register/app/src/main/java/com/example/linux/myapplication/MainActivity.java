@@ -1,6 +1,7 @@
 package com.example.linux.myapplication;
 
 import android.content.DialogInterface;
+import android.os.Message;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,9 +52,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        /*  autocomplete  */
         final List<String> arrList = new ArrayList<String>();
         final AutoCompleteTextView autocomplete1 = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
         autoname(arrList,autocomplete1);
+
+        //startScan();
+
 
         final ListView listview1= (ListView)   findViewById(R.id.listview1);
 
@@ -65,10 +71,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+
                 try {
                     JSONArray data = new JSONArray(getJSONUrl(url));
 
                    // Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
+
+
+
 
                     final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
                     HashMap<String, String> map;
@@ -87,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
                         map.put("PROVINCE_NAME",c.getString("PROVINCE_NAME"));
 
+                        map.put("telephone",c.getString("telephone"));
+
+
+
                         map.put("fullname",c.getString("name") +  "   "  + c.getString("lastname") );
 
 
@@ -104,14 +118,45 @@ public class MainActivity extends AppCompatActivity {
                     listview1.setAdapter(sAdap);
 
 
+                    final AlertDialog.Builder viewDetail = new AlertDialog.Builder(MainActivity.this);
+
+
                     listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> myAdapter, View myView,
                                                 int position, long mylng) {
-                            Toast.makeText(MainActivity.this,String.valueOf(  "test" ),Toast.LENGTH_SHORT).show();
+
+                            String sMemberID = MyArrList.get(position).get("id_card")
+                                    .toString();
+
+
+
+                            String stelephone = MyArrList.get(position).get("telephone")
+                                    .toString();
+
+                           // viewDetail.setIcon(android.R.drawable.btn_star_big_on);
+                            viewDetail.setIcon(android.R.drawable.btn_plus);
+                            viewDetail.setTitle("LOADING...");
+                            viewDetail.setMessage
+                                    (
+                                            "เลขบัตรประชาชน : " + sMemberID + "\n"
+                                          +  "เบอร์โทรศัพท์ : " + stelephone + "\n"
+
+                                    );
+
+                            viewDetail.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            // TODO Auto-generated method stub
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                            viewDetail.show();
+
 
                         }
                     });
-
 
 
 
@@ -157,6 +202,23 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    public void startScan() {
+        new Thread() {
+            public void run() {
+                try{
+                    Thread.sleep(500);
+                    //hRefresh.sendEmptyMessage(REFRESH_SCREEN);
+                }catch(Exception e){
+                }
+            }
+        }.start();
+    }
+
+
+
+
 
     public String getJSONUrl(String url) {
         StringBuilder str = new StringBuilder();
