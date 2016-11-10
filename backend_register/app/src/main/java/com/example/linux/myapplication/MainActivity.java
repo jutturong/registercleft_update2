@@ -112,6 +112,20 @@ public class MainActivity extends AppCompatActivity {
                         map.put("diagnosis",c.getString("diagnosis"));
 
 
+                        map.put("detail_diagnosis",c.getString("detail_diagnosis"));
+
+
+                        map.put("info_name",c.getString("info_name"));
+
+
+
+                        map.put("informative_lastname",c.getString("informative_lastname"));
+
+
+                        map.put("informative_tel",c.getString("informative_tel"));
+
+
+
                         map.put("fullname",c.getString("name") +  "   "  + c.getString("lastname") );
 
 
@@ -158,6 +172,18 @@ public class MainActivity extends AppCompatActivity {
                                     .toString();
 
 
+                            String detail_diagnosis = MyArrList.get(position).get("detail_diagnosis")
+                                    .toString();
+
+
+                            String info_name = MyArrList.get(position).get("info_name")
+                                    .toString();
+
+                            String informative_lastname = MyArrList.get(position).get("informative_lastname")
+                                    .toString();
+
+                            String informative_tel = MyArrList.get(position).get("informative_tel")
+                                    .toString();
 
 
 
@@ -174,7 +200,9 @@ public class MainActivity extends AppCompatActivity {
                                           +  "ที่อยู่ปัจจุบัน(ตามทะเบียนบ้าน) : " + address + "\n"
                                           +  "จังหวัดเกิด : " + PROVINCE_NAME + "\n"
                                            +  "ภาวะโลกร่วม : " + diagnosis + "\n"
-
+                                            +  "ภาวะโลกร่วม อื่นๆ : " + detail_diagnosis + "\n"
+                                                +  "ชื่อผู้ให้ข้อมูล : " + info_name +   "   "   +  informative_lastname  +  "\n"
+                                                    +  "เบอร์โทรศัพท์ผู้ให้ข้อมูล : " + informative_tel +    "\n"
                                     );
 
                             viewDetail.setPositiveButton("OK",
