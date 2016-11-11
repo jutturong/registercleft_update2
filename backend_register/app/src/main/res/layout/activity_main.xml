@@ -80,23 +80,24 @@
 
                 <LinearLayout
                     android:id="@+id/tab2"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
 
                    <TextView
-                       android:layout_marginTop="60dp"
+                       android:layout_marginTop="80dp"
                        android:text="ค้นหาจากรายชื่อ : "
                        android:layout_width="120dp"
-                       android:layout_height="40dp" />
+                       android:layout_height="25dp" />
 
 
                     <AutoCompleteTextView
-                        android:layout_marginTop="60dp"
-                        android:layout_marginLeft="5dp"
+
+
                         android:id="@+id/autoCompleteTextView1"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
 
@@ -104,11 +105,38 @@
                         android:completionThreshold="1"
                         android:text="" >
 
-                        <requestFocus />
+                        <!--<requestFocus />-->
                     </AutoCompleteTextView>
 
 
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:text="ค้นหาจากชื่อจังหวัด : "
+                        android:layout_width="150dp"
+                        android:layout_height="25dp" />
+
+
+                    <AutoCompleteTextView
+
+
+                        android:id="@+id/autoCompleteTextView2"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+
+                        android:ems="10"
+                        android:completionThreshold="1"
+                        android:text="" >
+
+                        <!--<requestFocus />-->
+                    </AutoCompleteTextView>
+
+
+
                 </LinearLayout>
+
+
 
 
 

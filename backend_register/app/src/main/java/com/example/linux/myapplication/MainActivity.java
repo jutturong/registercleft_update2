@@ -1,9 +1,14 @@
 package com.example.linux.myapplication;
 
+import android.Manifest;
 import android.app.TabActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Message;
 import android.os.StrictMode;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,12 +48,13 @@ public class MainActivity extends TabActivity {
     TabHost mTabHost;
 
 
-    public String url="http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
+    public String url = "http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // setContentView(R.layout.activity_tab);
+        // setContentView(R.layout.activity_tab);
 
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -59,8 +65,14 @@ public class MainActivity extends TabActivity {
 
         /*  autocomplete  */
         final List<String> arrList = new ArrayList<String>();
-        final AutoCompleteTextView autocomplete1 = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
-        autoname(arrList,autocomplete1);
+
+        final AutoCompleteTextView autocomplete1 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
+        autoname(arrList, autocomplete1);
+
+
+        final AutoCompleteTextView autocomplete2 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
+        autoprovince(arrList, autocomplete2);
+
 
         //startScan();
 
@@ -76,85 +88,79 @@ public class MainActivity extends TabActivity {
         mTabHost.setCurrentTab(0);
 
 
-        final ListView listview1= (ListView)   findViewById(R.id.listview1);
+        final ListView listview1 = (ListView) findViewById(R.id.listview1);
 
         final AlertDialog.Builder viewDetail = new AlertDialog.Builder(this);
 
 
-        final Button btn1=(Button) findViewById(R.id.btn1);
+        final Button btn1 = (Button) findViewById(R.id.btn1);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-
                 try {
                     JSONArray data = new JSONArray(getJSONUrl(url));
 
-                   // Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
-
-
+                    // Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
 
 
                     final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
                     HashMap<String, String> map;
 
 
-                    for(int i = 0; i < data.length(); i++) {
+                    for (int i = 0; i < data.length(); i++) {
 
                         JSONObject c = data.getJSONObject(i);
 
                         map = new HashMap<String, String>();
-                        map.put("name",c.getString("name"));
-                        map.put("lastname",c.getString("lastname"));
-                        map.put("id_card",c.getString("id_card"));
-                        map.put("id_sex",c.getString("id_sex"));
+                        map.put("name", c.getString("name"));
+                        map.put("lastname", c.getString("lastname"));
+                        map.put("id_card", c.getString("id_card"));
+                        map.put("id_sex", c.getString("id_sex"));
 
-                        map.put("PROVINCE_NAME",c.getString("PROVINCE_NAME"));
+                        map.put("PROVINCE_NAME", c.getString("PROVINCE_NAME"));
 
-                        map.put("telephone",c.getString("telephone"));
-
-
+                        map.put("telephone", c.getString("telephone"));
 
 
-                        map.put("birthdate",c.getString("birthdate"));
+                        map.put("birthdate", c.getString("birthdate"));
 
 
-                        map.put("address",c.getString("address"));
+                        map.put("address", c.getString("address"));
 
 
+                        map.put("diagnosis", c.getString("diagnosis"));
 
 
-                        map.put("diagnosis",c.getString("diagnosis"));
+                        map.put("detail_diagnosis", c.getString("detail_diagnosis"));
 
 
-                        map.put("detail_diagnosis",c.getString("detail_diagnosis"));
+                        map.put("info_name", c.getString("info_name"));
 
 
-                        map.put("info_name",c.getString("info_name"));
+                        map.put("informative_lastname", c.getString("informative_lastname"));
 
 
-
-                        map.put("informative_lastname",c.getString("informative_lastname"));
-
-
-                        map.put("informative_tel",c.getString("informative_tel"));
+                        map.put("informative_tel", c.getString("informative_tel"));
 
 
+                        map.put("sex_content", c.getString("sex_content"));
 
-                        map.put("fullname",c.getString("name") +  "   "  + c.getString("lastname") );
+
+                        map.put("fullname", c.getString("name") + "   " + c.getString("lastname"));
 
 
                         MyArrList.add(map);
 
-                      //  Toast.makeText(MainActivity.this,String.valueOf(  c.getString("name") ),Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(MainActivity.this,String.valueOf(  c.getString("name") ),Toast.LENGTH_SHORT).show();
 
                     }
 
 
                     SimpleAdapter sAdap;
                     sAdap = new SimpleAdapter(MainActivity.this, MyArrList, R.layout.activity_column,
-                            new String[] {"name", "lastname" , "PROVINCE_NAME" }, new int[] {R.id.Col_name, R.id.Col_lastname ,R.id.Col_PROVINCE_NAME });
+                            new String[]{"name", "lastname", "PROVINCE_NAME"}, new int[]{R.id.Col_name, R.id.Col_lastname, R.id.Col_PROVINCE_NAME});
 
                     listview1.setAdapter(sAdap);
 
@@ -198,30 +204,50 @@ public class MainActivity extends TabActivity {
                             String informative_lastname = MyArrList.get(position).get("informative_lastname")
                                     .toString();
 
-                            String informative_tel = MyArrList.get(position).get("informative_tel")
+                            final String informative_tel = MyArrList.get(position).get("informative_tel")
                                     .toString();
 
 
+                            String sex_content = MyArrList.get(position).get("sex_content")
+                                    .toString();
 
 
-                           // viewDetail.setIcon(android.R.drawable.btn_star_big_on);
+                            // viewDetail.setIcon(android.R.drawable.btn_star_big_on);
                             viewDetail.setIcon(android.R.drawable.btn_plus);
                             viewDetail.setTitle("LOADING...");
                             viewDetail.setMessage
                                     (
-                                            "เลขบัตรประชาชน : " + sMemberID + "\n"   + "\n"
-                                                    +  "เบอร์โทรศัพท์ : " + stelephone + "\n"  + "\n"
-                                                    +  "เพศ : " + id_sex + "\n"  + "\n"
-                                                    +  "วัน-เดือน-ปี เกิด : " + birthdate + "\n"  + "\n"
-                                                    +  "ที่อยู่ปัจจุบัน(ตามทะเบียนบ้าน) : " + address + "\n"
-                                          +  "จังหวัดเกิด : " + PROVINCE_NAME + "\n" + "\n"
-                                                    +  "ภาวะโลกร่วม : " + diagnosis + "\n"  + "\n"
-                                                    +  "ภาวะโลกร่วม อื่นๆ : " + detail_diagnosis + "\n" + "\n"
-                                                    +  "ชื่อผู้ให้ข้อมูล : " + info_name +   "   "   +  informative_lastname  +  "\n" + "\n"
-                                                    +  "เบอร์โทรศัพท์ผู้ให้ข้อมูล : " + informative_tel +    "\n" + "\n"
+                                            "เลขบัตรประชาชน : " + sMemberID + "\n" + "\n"
+                                                    + "เบอร์โทรศัพท์ : " + stelephone + "\n" + "\n"
+                                                    + "เพศ : " + sex_content + "\n" + "\n"
+                                                    + "วัน-เดือน-ปี เกิด : " + birthdate + "\n" + "\n"
+                                                    + "ที่อยู่ปัจจุบัน(ตามทะเบียนบ้าน) : " + address + "\n"
+                                                    + "จังหวัดเกิด : " + PROVINCE_NAME + "\n" + "\n"
+                                                    + "ภาวะโลกร่วม : " + diagnosis + "\n" + "\n"
+                                                    + "ภาวะโลกร่วม อื่นๆ : " + detail_diagnosis + "\n" + "\n"
+                                                    + "ชื่อผู้ให้ข้อมูล : " + info_name + "   " + informative_lastname + "\n" + "\n"
+                                                    + "เบอร์โทรศัพท์ผู้ให้ข้อมูล : " + informative_tel + "\n" + "\n"
                                     );
 
-                            viewDetail.setPositiveButton("OK",
+                            viewDetail.setNegativeButton("โทรศัพท์ติดต่อ", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    // TODO Auto-generated method stub
+                                    // dialog.dismiss();
+
+                                    //startActivities( callphone(informative_tel));
+
+                                    Toast.makeText(MainActivity.this, String.valueOf("เบอร์โทรศัพท์ผู้ให้ข้อมูล : " + informative_tel + " กำลังโทรออก... "), Toast.LENGTH_SHORT).show();
+
+                                   // Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + informative_tel));
+                                   //  startActivities(intent);
+                                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel" , informative_tel , null ));
+                                    startActivity(intent);
+
+
+                                }
+                            });
+                            viewDetail.setPositiveButton("ปิดหน้าต่าง",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,
                                                             int which) {
@@ -230,6 +256,7 @@ public class MainActivity extends TabActivity {
                                         }
                                     });
 
+
                             viewDetail.show();
 
 
@@ -237,10 +264,7 @@ public class MainActivity extends TabActivity {
                     });
 
 
-
-
-
-                        }catch (JSONException e) {
+                } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
@@ -250,8 +274,40 @@ public class MainActivity extends TabActivity {
         });
 
 
-
     }
+
+
+
+    public void autoprovince(List<String> arrList,AutoCompleteTextView autocomplete )
+    {
+        try {
+
+            JSONArray data = new JSONArray(getJSONUrl(url));
+            //Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
+
+            for(int i = 0; i < data.length(); i++) {
+
+                JSONObject c = data.getJSONObject(i);
+
+                arrList.add( c.getString("PROVINCE_NAME")  );
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,
+                        android.R.layout.simple_spinner_item,
+                        arrList);
+
+                //  Toast.makeText(MainActivity.this,String.valueOf(  c.getString("name") ),Toast.LENGTH_SHORT).show();
+                autocomplete.setAdapter(adapter);
+
+
+            }
+
+        }catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void autoname(List<String> arrList,AutoCompleteTextView autocomplete1 )
     {
@@ -272,7 +328,7 @@ public class MainActivity extends TabActivity {
 
                 //  Toast.makeText(MainActivity.this,String.valueOf(  c.getString("name") ),Toast.LENGTH_SHORT).show();
                 autocomplete1.setAdapter(adapter);
-                
+
 
             }
 
