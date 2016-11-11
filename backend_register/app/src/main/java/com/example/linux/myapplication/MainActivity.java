@@ -1,5 +1,6 @@
 package com.example.linux.myapplication;
 
+import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.os.Message;
 import android.os.StrictMode;
@@ -14,6 +15,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -36,7 +38,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Handler;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends TabActivity {
+
+    TabHost mTabHost;
+
 
     public String url="http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
     @Override
@@ -58,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
         autoname(arrList,autocomplete1);
 
         //startScan();
+
+
+        /*  tab host */
+        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+        mTabHost = getTabHost();
+
+        mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("DATA").setContent(R.id.tab1));
+        mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("SEARCH").setContent(R.id.tab2));
+
+
+        mTabHost.setCurrentTab(0);
 
 
         final ListView listview1= (ListView)   findViewById(R.id.listview1);
@@ -193,16 +209,16 @@ public class MainActivity extends AppCompatActivity {
                             viewDetail.setTitle("LOADING...");
                             viewDetail.setMessage
                                     (
-                                            "เลขบัตรประชาชน : " + sMemberID + "\n"
-                                          +  "เบอร์โทรศัพท์ : " + stelephone + "\n"
-                                          +  "เพศ : " + id_sex + "\n"
-                                          +  "วัน-เดือน-ปี เกิด : " + birthdate + "\n"
-                                          +  "ที่อยู่ปัจจุบัน(ตามทะเบียนบ้าน) : " + address + "\n"
-                                          +  "จังหวัดเกิด : " + PROVINCE_NAME + "\n"
-                                           +  "ภาวะโลกร่วม : " + diagnosis + "\n"
-                                            +  "ภาวะโลกร่วม อื่นๆ : " + detail_diagnosis + "\n"
-                                                +  "ชื่อผู้ให้ข้อมูล : " + info_name +   "   "   +  informative_lastname  +  "\n"
-                                                    +  "เบอร์โทรศัพท์ผู้ให้ข้อมูล : " + informative_tel +    "\n"
+                                            "เลขบัตรประชาชน : " + sMemberID + "\n"   + "\n"
+                                                    +  "เบอร์โทรศัพท์ : " + stelephone + "\n"  + "\n"
+                                                    +  "เพศ : " + id_sex + "\n"  + "\n"
+                                                    +  "วัน-เดือน-ปี เกิด : " + birthdate + "\n"  + "\n"
+                                                    +  "ที่อยู่ปัจจุบัน(ตามทะเบียนบ้าน) : " + address + "\n"
+                                          +  "จังหวัดเกิด : " + PROVINCE_NAME + "\n" + "\n"
+                                                    +  "ภาวะโลกร่วม : " + diagnosis + "\n"  + "\n"
+                                                    +  "ภาวะโลกร่วม อื่นๆ : " + detail_diagnosis + "\n" + "\n"
+                                                    +  "ชื่อผู้ให้ข้อมูล : " + info_name +   "   "   +  informative_lastname  +  "\n" + "\n"
+                                                    +  "เบอร์โทรศัพท์ผู้ให้ข้อมูล : " + informative_tel +    "\n" + "\n"
                                     );
 
                             viewDetail.setPositiveButton("OK",
@@ -256,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //  Toast.makeText(MainActivity.this,String.valueOf(  c.getString("name") ),Toast.LENGTH_SHORT).show();
                 autocomplete1.setAdapter(adapter);
+                
 
             }
 
