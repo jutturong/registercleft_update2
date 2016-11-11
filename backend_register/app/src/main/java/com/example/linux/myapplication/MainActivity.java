@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -47,6 +48,7 @@ public class MainActivity extends TabActivity {
 
     TabHost mTabHost;
 
+    ContextMenu menu;
 
     public String url = "http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
 
@@ -83,7 +85,7 @@ public class MainActivity extends TabActivity {
 
         mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("DATA").setContent(R.id.tab1));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("SEARCH").setContent(R.id.tab2));
-
+        mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("MAP").setContent(R.id.tab3));
 
         mTabHost.setCurrentTab(0);
 
@@ -255,6 +257,13 @@ public class MainActivity extends TabActivity {
                                             dialog.dismiss();
                                         }
                                     });
+
+
+
+
+
+                            //menu.setHeaderIcon(android.R.drawable.btn_minus);
+
 
 
                             viewDetail.show();
