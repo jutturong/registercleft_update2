@@ -1,17 +1,12 @@
 package com.example.linux.myapplication;
 
-import android.Manifest;
 import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Message;
-import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.View;
@@ -23,6 +18,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -42,7 +39,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Handler;
 
 public class MainActivity extends TabActivity {
 
@@ -51,6 +47,13 @@ public class MainActivity extends TabActivity {
     ContextMenu menu;
 
     public String url = "http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
+
+    // Google Map
+    private GoogleMap googleMap;
+
+    // Latitude & Longitude
+    private Double Latitude  = 13.844205;
+    private Double Longitude  = 100.598856;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,9 @@ public class MainActivity extends TabActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
+
+
 
 
         /*  autocomplete  */
@@ -88,6 +94,10 @@ public class MainActivity extends TabActivity {
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("MAP").setContent(R.id.tab3));
 
         mTabHost.setCurrentTab(0);
+
+
+
+
 
 
         final ListView listview1 = (ListView) findViewById(R.id.listview1);
@@ -292,7 +302,8 @@ public class MainActivity extends TabActivity {
         try {
 
             JSONArray data = new JSONArray(getJSONUrl(url));
-            //Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
+
+           // Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
 
             for(int i = 0; i < data.length(); i++) {
 
@@ -304,7 +315,7 @@ public class MainActivity extends TabActivity {
                         android.R.layout.simple_spinner_item,
                         arrList);
 
-                //  Toast.makeText(MainActivity.this,String.valueOf(  c.getString("name") ),Toast.LENGTH_SHORT).show();
+                 Toast.makeText(MainActivity.this,String.valueOf( c.getString("PROVINCE_NAME")  ),Toast.LENGTH_SHORT).show();
                 autocomplete.setAdapter(adapter);
 
 
