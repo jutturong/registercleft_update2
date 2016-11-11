@@ -63,7 +63,7 @@
                          { field:'lastname',title:'นามสกุลผู้ป่วย',align:'left' },
                          { field:'id_card',title:'เลขบัตรประชาชน',align:'left' },
                          { field:'telephone',title:'เบอร์โทรศัพท์',align:'left' },
-                         { field:'id_sex',title:'เพศ',align:'left' },
+                         { field:'sex_content',title:'เพศ',align:'left' },
                          { field:'birthdate',title:'วัน-เดือน-ปี เกิด',align:'left' },
                          { field:'address',title:'ที่อยู่ปัจจุบัน(ตามทะเบียนบ้าน)',align:'left' },
                           //  { field:'province_id',title:'จังหวัดเกิด',align:'left' },

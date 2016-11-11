@@ -103,8 +103,11 @@ class Welcome extends CI_Controller {
             
              $tb="tb_patientcleft";
              $tb1="province";
+             $tb2="tb_sex";
              
-             $this->db->join($tb1, $tb1.".PROVINCE_CODE=".$tb.".province_id" ,"left");
+             
+             $this->db->join($tb1,  $tb.".province_id=".$tb1.".PROVINCE_CODE" );
+             $this->db->join($tb2,  $tb.".id_sex=".$tb2.".id_sex"   );
              
              
              $q=$this->db->get($tb);
@@ -379,6 +382,42 @@ class Welcome extends CI_Controller {
            echo  json_encode($flag);
  
         }
+        
+        
+        #---------------- json android backend  list  จะทำการดู backoffice หลังจากการลงทะเบียนไปแล้ว--------------------------------
+       //http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1
+        public function json_backend1()
+        {
+            
+        
+
+             //FROM `tb_patientcleft` 
+            //SELECT * FROM `province` 
+             //PROVINCE_CODE
+            
+             $tb="tb_patientcleft";
+             $tb1="province";
+             $tb2="tb_sex";
+             
+             /*
+             $this->db->join($tb1, $tb1.".PROVINCE_CODE=".$tb.".province_id" ,"right");
+             $this->db->join($tb2, $tb2.".id_sex=".$tb.".id_sex" ,"right");
+             */
+             
+             $this->db->join($tb2,  $tb.".id_sex=".$tb2.".id_sex"   );
+             $this->db->join($tb1,  $tb.".province_id=".$tb1.".PROVINCE_CODE" );
+            
+             
+             
+             $q=$this->db->get($tb);
+             foreach($q->result() as $row )
+             {
+                 $rows[]=$row;
+             }
+             echo json_encode($rows);
+  
+             
+        } 
 
 }
 
