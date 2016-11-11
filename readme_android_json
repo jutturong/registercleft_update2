@@ -298,5 +298,26 @@ android {
 http://www.thaicreate.com/mobile/android-call-phone.html
 
 
+#--- android google map----
+http://www.thaicreate.com/mobile/android-google-map.html
+
+
+คำสั่งสำหรับ  SHA1 
+keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+ให้ copy code มา =>Certificate fingerprints:
+
+ MD5:  7A:01:DA:0C:7A:8E:27:13:22:77:CF:91:28:54:8D:5E
+	 SHA1: 60:4A:11:22:FF:32:FA:F1:B2:0A:6C:E0:64:7C:49:00:4E:1E:C8:04
+	 SHA256: B0:5F:57:99:E7:CE:B9:83:C7:32:1E:01:F7:A9:2C:D8:7E:39:92:23:BD:3C:C9:F3:1D:BB:70:04:83:6C:66:C7
+	 Signature algorithm name: SHA1withRSA
+	 Version: 1
+
+
+https://console.cloud.google.com/freetrial?pli=1&page=1
+
+
+
+
+
 
 
