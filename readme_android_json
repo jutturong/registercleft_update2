@@ -313,8 +313,27 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 	 Version: 1
 
 
+keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+Certificate fingerprints:
+	 MD5:  28:8C:65:69:70:B6:7B:FF:42:95:C3:DB:2C:A7:A6:04
+	 SHA1: 9D:3A:1C:01:75:D9:8D:CD:EB:E1:C8:11:1D:2B:9A:B9:27:9A:FC:F5
+	 SHA256: D2:F2:CE:E2:C5:E4:97:DB:8A:28:A0:44:5A:A1:7B:90:9B:9C:3F:FD:44:
+
+
 https://console.cloud.google.com/freetrial?pli=1&page=1
 
+
+https://console.cloud.google.com/home/dashboard?project=angular-geode-149214
+
+
+รายละเอียดเกี่ยวกับโครงการของคุณ
+รหัสโครงการ
+angular-geode-149214
+หมายเลขโครงการ
+964596341894
+
+ตัวอย่าง
+http://www.thaicreate.com/mobile/android-google-map-focus-zoom.html
 
 
 
