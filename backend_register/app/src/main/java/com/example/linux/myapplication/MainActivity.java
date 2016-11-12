@@ -47,6 +47,7 @@ public class MainActivity extends TabActivity {
     ContextMenu menu;
 
     public String url = "http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
+    public String url2="http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_province_backend";
 
     // Google Map
     private GoogleMap googleMap;
@@ -301,7 +302,7 @@ public class MainActivity extends TabActivity {
     {
         try {
 
-            JSONArray data = new JSONArray(getJSONUrl(url));
+            JSONArray data = new JSONArray(getJSONUrl(url2));
 
            // Toast.makeText(MainActivity.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
 
@@ -315,7 +316,7 @@ public class MainActivity extends TabActivity {
                         android.R.layout.simple_spinner_item,
                         arrList);
 
-                 Toast.makeText(MainActivity.this,String.valueOf( c.getString("PROVINCE_NAME")  ),Toast.LENGTH_SHORT).show();
+               //  Toast.makeText(MainActivity.this,String.valueOf( c.getString("PROVINCE_NAME")  ),Toast.LENGTH_SHORT).show();
                 autocomplete.setAdapter(adapter);
 
 
