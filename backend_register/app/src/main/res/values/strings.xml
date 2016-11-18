@@ -1,4 +1,9 @@
 <resources>
 
     <string name="app_name" translatable="false">แจ้งการลงทะเบียน</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">AIzaSyA2M4JuBA-CxXmHkDEQngkKEIEe6uZsqMg</string>
+
+
+
 </resources>

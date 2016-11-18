@@ -72,6 +72,9 @@ public class MainActivity extends TabActivity {
 
 
 
+
+
+
         /*  autocomplete  */
         final List<String> arrList = new ArrayList<String>();
 
@@ -90,14 +93,49 @@ public class MainActivity extends TabActivity {
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost = getTabHost();
 
+
+
         mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("DATA").setContent(R.id.tab1));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("SEARCH").setContent(R.id.tab2));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("MAP").setContent(R.id.tab3));
 
+        int tabs=getTabHost().getChildCount();
+
         mTabHost.setCurrentTab(0);
 
+       // Toast.makeText(MainActivity.this, String.valueOf(  mTabHost.getChildAt(1)), Toast.LENGTH_SHORT).show();
 
 
+/*
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener(){
+            @Override
+            public void onTabChanged(String tabId) {
+
+
+                 if( tabId.equals(3)) {
+                     Toast.makeText(MainActivity.this, String.valueOf(mTabHost.getChildAt(1)), Toast.LENGTH_SHORT).show();
+                 }
+
+            }
+        });
+*/
+
+
+        // 1.  https://developer.android.com/reference/android/widget/TabHost.html#getCurrentTab%28%29
+          //2.  http://stackoverflow.com/questions/3583405/get-index-of-selected-tab-in-tabhost
+
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                        //mytabs.getCurrentTab()
+                //Toast.makeText(MainActivity.this, String.valueOf(  mTabHost.getCurrentTab()  ), Toast.LENGTH_SHORT).show();
+                int  id_tab= mTabHost.getCurrentTab();
+                if( id_tab == 2 )
+                {
+                    Toast.makeText(MainActivity.this, String.valueOf(  "select tab 3"  ), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
 
@@ -295,6 +333,9 @@ public class MainActivity extends TabActivity {
 
 
     }
+
+
+
 
 
 
