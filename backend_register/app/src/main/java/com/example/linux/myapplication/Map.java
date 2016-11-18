@@ -46,6 +46,25 @@ public class Map extends FragmentActivity {
     private Double Longitude2 = 103.2818035;
 
 
+    //@15.9395477,103.5304926
+    private Double Latitude3  = 15.9395477;
+    private Double Longitude3  = 103.5304926;
+
+
+    //กาฬสินธุ์/@16.6427287,103.3881626,
+    private Double Latitude4  = 16.6427287;
+    private Double Longitude4  = 103.3881626;
+
+
+    //@16.1876986,102.8692588
+    private Double Latitude5  = 16.1876986;
+    private Double Longitude5  = 102.8692588;
+
+    ///@15.9884487,103.9252753
+    private Double Latitude6  = 15.9884487;
+    private Double Longitude6 = 103.9252753;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -90,6 +109,29 @@ public class Map extends FragmentActivity {
 
 
 
+            MarkerOptions marker3 = new MarkerOptions().position(new LatLng(Latitude3, Longitude3)).title("Marker in 3");
+            googleMap.addMarker(marker3);
+            marker3.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+
+
+
+            MarkerOptions marker4 = new MarkerOptions().position(new LatLng(Latitude4, Longitude4)).title("Marker in 4");
+            googleMap.addMarker(marker4);
+            marker4.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+
+            MarkerOptions marker5 = new MarkerOptions().position(new LatLng(Latitude5, Longitude5)).title("Marker in 5");
+            googleMap.addMarker(marker5);
+            marker5.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+
+            MarkerOptions marker6 = new MarkerOptions().position(new LatLng(Latitude6, Longitude6)).title("Marker in 6");
+            googleMap.addMarker(marker6);
+            marker6.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+
+            //------------ options googlemap-------------------------------
 
             googleMap.getUiSettings().setZoomGesturesEnabled(true);
 
