@@ -36,9 +36,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class MainActivity extends TabActivity {
 
@@ -106,19 +104,7 @@ public class MainActivity extends TabActivity {
        // Toast.makeText(MainActivity.this, String.valueOf(  mTabHost.getChildAt(1)), Toast.LENGTH_SHORT).show();
 
 
-/*
-        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener(){
-            @Override
-            public void onTabChanged(String tabId) {
 
-
-                 if( tabId.equals(3)) {
-                     Toast.makeText(MainActivity.this, String.valueOf(mTabHost.getChildAt(1)), Toast.LENGTH_SHORT).show();
-                 }
-
-            }
-        });
-*/
 
 
         // 1.  https://developer.android.com/reference/android/widget/TabHost.html#getCurrentTab%28%29
@@ -132,7 +118,9 @@ public class MainActivity extends TabActivity {
                 int  id_tab= mTabHost.getCurrentTab();
                 if( id_tab == 2 )
                 {
-                    Toast.makeText(MainActivity.this, String.valueOf(  "select tab 3"  ), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(MainActivity.this, String.valueOf(  "select tab 3"  ), Toast.LENGTH_SHORT).show();
+                    Intent  map_intent=new Intent(MainActivity.this, Map.class);
+                    startActivity( map_intent );
                 }
             }
         });
