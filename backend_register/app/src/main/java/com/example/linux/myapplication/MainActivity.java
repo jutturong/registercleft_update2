@@ -44,7 +44,7 @@ public class MainActivity extends TabActivity {
 
     ContextMenu menu;
 
-    public String url = "http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
+    public static String  url = "http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_backend1";
     public String url2="http://kkucleft.kku.ac.th/app_admin/index.php/welcome/json_province_backend";
 
     // Google Map
@@ -405,7 +405,7 @@ public class MainActivity extends TabActivity {
 
 
 
-    public String getJSONUrl(String url) {
+    public  static  String getJSONUrl(String url) {
         StringBuilder str = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);

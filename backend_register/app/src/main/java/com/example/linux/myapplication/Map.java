@@ -10,6 +10,7 @@ import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,6 +21,13 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by linux on 18/11/2559.
@@ -137,6 +145,29 @@ public class Map extends FragmentActivity {
             MarkerOptions marker6 = new MarkerOptions().position(new LatLng(Latitude6, Longitude6)).title("Marker in 6");
             googleMap.addMarker(marker6);
             marker6.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+
+
+            //-------------json-------------
+            String getJSONUrl=MainActivity.getJSONUrl(MainActivity.url);
+            try {
+                JSONArray data = new JSONArray(getJSONUrl);
+
+                //Toast.makeText(Map.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
+                final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+                HashMap<String, String> map;
+
+                for (int i = 0; i < data.length(); i++) {
+
+                    JSONObject c = data.getJSONObject(i);
+                    Toast.makeText(Map.this,String.valueOf(  c.getString("latitude") + "," +  c.getString("longitude")  ),Toast.LENGTH_SHORT).show();
+
+                }
+
+            }catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
 
             //------------ options googlemap-------------------------------
