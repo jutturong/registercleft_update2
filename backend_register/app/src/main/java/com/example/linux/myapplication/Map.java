@@ -9,7 +9,6 @@ import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -83,6 +82,35 @@ public class Map extends FragmentActivity {
         }
 
 
+        //---------Check Enabled Location Services  เป็นการ check การเปิด location server GPS-------
+        final AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        boolean isGPS_Enabled = false;
+        boolean isNetwork_Enabled = false;
+
+        try {
+            isGPS_Enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch (Exception ex) { }
+
+        try {
+            isNetwork_Enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch (Exception ex) { }
+
+        if (!isGPS_Enabled && !isNetwork_Enabled) {
+
+            adb.setTitle("Warning Location Services!!");
+            adb.setMessage("Please Enable Location Services.");
+            adb.setNegativeButton("Cancel", null);
+            adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                    // TODO Auto-generated method stub
+                    Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(myIntent);
+                }
+            });
+            adb.show();
+
+        }
 
         if(Latitude > 0 && Longitude > 0)
         {
@@ -161,7 +189,7 @@ public class Map extends FragmentActivity {
                     map.put("latitude", c.getString("latitude"));
                     map.put("longitude", c.getString("longitude"));
                     location.add(map);
-                    Toast.makeText(Map.this,String.valueOf(  c.getString("latitude") + "," +  c.getString("longitude")  ),Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(Map.this,String.valueOf(  c.getString("latitude") + "," +  c.getString("longitude")  ),Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -169,9 +197,44 @@ public class Map extends FragmentActivity {
                 Longitude = Double.parseDouble(location.get(0).get("longitude").toString());
                 LatLng coordinate = new LatLng(Latitude, Longitude);
 
-                
-                googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID);
+
+
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 8));
+                /*
+            //*** Focus & Zoom
+            googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom( coordinate  , 8 ));
+*/
+
+
+/*
+                 //--- map type google
+                //Channing Map Type
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                // mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                //  mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                // mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                */
+
+               // googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID);
+              //  googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+
+                 // Zoom Control
+                googleMap.getUiSettings().setZoomGesturesEnabled(true);
+
+                 //Rotate
+                googleMap.getUiSettings().setRotateGesturesEnabled(true);
+                //Compass Functionality
+                googleMap.getUiSettings().setCompassEnabled(true);
+                //My Location Button
+                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+
+
+
+
 
                 // *** Marker (Loop)
                 for (int i = 0; i < location.size(); i++) {
@@ -190,9 +253,6 @@ public class Map extends FragmentActivity {
         }
 
 
-            //------------ options googlemap-------------------------------
-
-            googleMap.getUiSettings().setZoomGesturesEnabled(true);
 
         /*
         final LatLng TutorialsPoint = new LatLng(21 , 57);
@@ -201,68 +261,11 @@ public class Map extends FragmentActivity {
          */
 
 
-/*
-            //*** Focus & Zoom
-            googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom( coordinate  , 8 ));
-*/
 
-            //Channing Map Type
-            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            // mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            //  mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-            googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-
-            googleMap.getUiSettings().setZoomGesturesEnabled(true);
-
-            // mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
-
-            googleMap.getUiSettings().setRotateGesturesEnabled(true);
-            //Compass Functionality
-            googleMap.getUiSettings().setCompassEnabled(true);
-            //My Location Button
-            googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-
-            googleMap.getUiSettings().setRotateGesturesEnabled(true);
-
-
-
-            //*** Zoom Control
-            googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
             //*** RadioButton
-            //rdoNormal = (RadioButton)findViewById(R.id.rdoNormal);
+           // RadioButton rdoNormal = (RadioButton)findViewById(R.id.rdoNormal);
 
-
-            //---------Check Enabled Location Services  เป็นการ check การเปิด location server GPS-------
-            final AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-            boolean isGPS_Enabled = false;
-            boolean isNetwork_Enabled = false;
-
-            try {
-                isGPS_Enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            } catch (Exception ex) { }
-
-            try {
-                isNetwork_Enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-            } catch (Exception ex) { }
-
-            if (!isGPS_Enabled && !isNetwork_Enabled) {
-
-                adb.setTitle("Warning Location Services!!");
-                adb.setMessage("Please Enable Location Services.");
-                adb.setNegativeButton("Cancel", null);
-                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int arg1) {
-                        // TODO Auto-generated method stub
-                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(myIntent);
-                    }
-                });
-                adb.show();
-
-            }
 
 
 
