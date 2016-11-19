@@ -3,6 +3,7 @@ package com.example.linux.myapplication;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -14,6 +15,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -100,6 +103,11 @@ public class Map extends FragmentActivity {
             googleMap.addMarker(new MarkerOptions().position(coordinate).title("Marker in 1"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
 
+            Circle circle = googleMap.addCircle(new CircleOptions()
+                    .center(new LatLng(Latitude2, Longitude2 ))
+                    .radius(3000)
+                    .strokeColor(Color.RED)
+                    .fillColor(Color.BLUE));
 
 
             MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude2, Longitude2)).title("Marker in 2");
