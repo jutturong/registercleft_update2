@@ -3,7 +3,6 @@ package com.example.linux.myapplication;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -15,11 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -98,6 +93,7 @@ public class Map extends FragmentActivity {
 
 
 
+            /*
             LatLng coordinate = new LatLng(Latitude, Longitude);
 
             //*** Focus & Zoom
@@ -146,23 +142,47 @@ public class Map extends FragmentActivity {
             googleMap.addMarker(marker6);
             marker6.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
+*/
 
 
             //-------------json-------------
+            ArrayList<HashMap<String, String>> location = null;
             String getJSONUrl=MainActivity.getJSONUrl(MainActivity.url);
             try {
                 JSONArray data = new JSONArray(getJSONUrl);
 
                 //Toast.makeText(Map.this,String.valueOf(  data.length()  ),Toast.LENGTH_SHORT).show();
-                final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+                location = new ArrayList<HashMap<String, String>>();
                 HashMap<String, String> map;
 
                 for (int i = 0; i < data.length(); i++) {
-
                     JSONObject c = data.getJSONObject(i);
+                    map = new HashMap<String, String>();
+                    map.put("latitude", c.getString("latitude"));
+                    map.put("longitude", c.getString("longitude"));
+                    location.add(map);
                     Toast.makeText(Map.this,String.valueOf(  c.getString("latitude") + "," +  c.getString("longitude")  ),Toast.LENGTH_SHORT).show();
 
                 }
+
+                Latitude = Double.parseDouble(location.get(0).get("latitude").toString());
+                Longitude = Double.parseDouble(location.get(0).get("longitude").toString());
+                LatLng coordinate = new LatLng(Latitude, Longitude);
+
+                
+                googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID);
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 8));
+
+                // *** Marker (Loop)
+                for (int i = 0; i < location.size(); i++) {
+                    Latitude = Double.parseDouble(location.get(i).get("latitude").toString());
+                    Longitude = Double.parseDouble(location.get(i).get("longitude").toString());
+                  //  String name = location.get(i).get("LocationName").toString();
+                    MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude, Longitude)).title("");
+                    googleMap.addMarker(marker);
+                }
+
+
 
             }catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -181,11 +201,11 @@ public class Map extends FragmentActivity {
          */
 
 
-
+/*
             //*** Focus & Zoom
             googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID);
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom( coordinate  , 8 ));
-
+*/
 
             //Channing Map Type
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
