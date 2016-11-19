@@ -172,7 +172,7 @@ public class Map extends FragmentActivity {
 
 */
 
-
+            //http://www.thaicreate.com/mobile/android-google-map-marker-php-mysql.html
             //-------------json-------------
             ArrayList<HashMap<String, String>> location = null;
             String getJSONUrl=MainActivity.getJSONUrl(MainActivity.url);
