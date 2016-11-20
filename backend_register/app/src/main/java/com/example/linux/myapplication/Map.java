@@ -241,6 +241,10 @@ public class Map extends FragmentActivity {
                     map = new HashMap<String, String>();
                     map.put("latitude", c.getString("latitude"));
                     map.put("longitude", c.getString("longitude"));
+                    map.put("address", c.getString("address"));
+                    map.put("name", c.getString("name"));
+                    map.put("lastname", c.getString("lastname"));
+                    //	lastname
                     location.add(map);
                    // Toast.makeText(Map.this,String.valueOf(  c.getString("latitude") + "," +  c.getString("longitude")  ),Toast.LENGTH_SHORT).show();
 
@@ -294,7 +298,7 @@ public class Map extends FragmentActivity {
                     Latitude = Double.parseDouble(location.get(i).get("latitude").toString());
                     Longitude = Double.parseDouble(location.get(i).get("longitude").toString());
                   //  String name = location.get(i).get("LocationName").toString();
-                    MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude, Longitude)).title("");
+                    MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude, Longitude)).title("" +  location.get(i).get("name").toString()  +   "  "  + location.get(i).get("lastname").toString()  +  " ที่อยู่ : " + location.get(i).get("address").toString() + "" );
                     googleMap.addMarker(marker);
                 }
 
