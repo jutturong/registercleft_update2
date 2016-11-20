@@ -33,6 +33,8 @@ public class Map extends FragmentActivity {
 
     // Google Map
     private GoogleMap googleMap;
+    private Double Latitude;
+    private Double Longitude;
 
     /*
     // Latitude & Longitude
@@ -40,7 +42,7 @@ public class Map extends FragmentActivity {
     private Double Longitude  = 100.598856;
 */
 
-
+/*
     //@16.4672351,102.826784
     private Double Latitude  = 16.4672351;
     private Double Longitude  = 102.826784;
@@ -68,7 +70,9 @@ public class Map extends FragmentActivity {
     ///@15.9884487,103.9252753
     private Double Latitude6  = 15.9884487;
     private Double Longitude6 = 103.9252753;
+*/
 
+    protected LocationManager locationManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,18 +89,33 @@ public class Map extends FragmentActivity {
         //---------Check Enabled Location Services  เป็นการ check การเปิด location server GPS-------
         final AlertDialog.Builder adb = new AlertDialog.Builder(this);
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        boolean isGPS_Enabled = false;
-        boolean isNetwork_Enabled = false;
+      //  boolean isGPS_Enabled = false;
+     //   boolean isNetwork_Enabled = false;
+        boolean isGPS_Enabled;
+        boolean isNetwork_Enabled;
 
-        try {
-            isGPS_Enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        } catch (Exception ex) { }
+      /*
+        if( isGPS_Enabled &&  isNetwork_Enabled )
+        {
+            try {
+                isGPS_Enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-        try {
-            isNetwork_Enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch (Exception ex) { }
 
-        if (!isGPS_Enabled && !isNetwork_Enabled) {
+
+
+            } catch (Exception ex) {
+
+            }
+
+            try {
+                isNetwork_Enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            } catch (Exception ex) {
+
+            }
+
+        }
+
+       else  if (!isGPS_Enabled && !isNetwork_Enabled) {
 
             adb.setTitle("Warning Location Services!!");
             adb.setMessage("Please Enable Location Services.");
@@ -111,9 +130,40 @@ public class Map extends FragmentActivity {
             adb.show();
 
         }
+*/
 
-        if(Latitude > 0 && Longitude > 0)
-        {
+
+        try {
+
+            isGPS_Enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+            adb.setTitle("Warning Location Services!!");
+            adb.setMessage("Please Enable Location Services.");
+            adb.setNegativeButton("Cancel", null);
+            adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                    // TODO Auto-generated method stub
+                    Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(myIntent);
+                }
+            });
+            adb.show();
+
+
+        } catch (Exception ex) {
+
+            isNetwork_Enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        }
+
+        try {
+            isNetwork_Enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch (Exception ex) {
+
+        }
+
+
+      //  if(Latitude > 0 && Longitude > 0)
+      //  {
 
             //*** Display Google Map
             googleMap = ((SupportMapFragment)getSupportFragmentManager()
@@ -171,6 +221,9 @@ public class Map extends FragmentActivity {
             marker6.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
 */
+
+
+
 
             //http://www.thaicreate.com/mobile/android-google-map-marker-php-mysql.html
             //-------------json-------------
@@ -269,7 +322,7 @@ public class Map extends FragmentActivity {
 
 
 
-        }
+      //  }
 
 
 
