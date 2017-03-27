@@ -60,6 +60,9 @@ public class MainActivity extends TabActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+       // requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
+
         //---- full screen  notitle bar-----------
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -116,7 +119,6 @@ public class MainActivity extends TabActivity {
 
 
 
-
         // 1.  https://developer.android.com/reference/android/widget/TabHost.html#getCurrentTab%28%29
           //2.  http://stackoverflow.com/questions/3583405/get-index-of-selected-tab-in-tabhost
 
@@ -128,7 +130,11 @@ public class MainActivity extends TabActivity {
                 int  id_tab= mTabHost.getCurrentTab();
                 if( id_tab == 2 )
                 {
-                   // Toast.makeText(MainActivity.this, String.valueOf(  "select tab 3"  ), Toast.LENGTH_SHORT).show();
+
+                  //  setProgressBarIndeterminateVisibility(true);
+
+
+                    // Toast.makeText(MainActivity.this, String.valueOf(  "select tab 3"  ), Toast.LENGTH_SHORT).show();
                     Intent  map_intent=new Intent(MainActivity.this, Map.class);
                     startActivity( map_intent );
                 }
